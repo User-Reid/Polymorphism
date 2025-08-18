@@ -73,55 +73,66 @@
 //   public override string Name => "Mozerella";
 //   public bool IsLight { get; }
 // }
-var taco = new Exercise();
-System.Console.WriteLine(taco.GetCountsOfAnimalsLegs());
+Exercise process = new Exercise();
+List<string> wordList = new List<string> {
+  "bobcat",
+  "wolverine",
+  "grizzly"
+};
+System.Console.WriteLine($"{process.ProcessAll(wordList)}");
 
 Console.ReadKey();
 
-public class Exercise {
+public class Exercise
+{
+  public List<string> ProcessAll(List<string> words)
+  {
+    var stringsProcessors = new List<StringsProcessor>
+                {
+                    new StringsTrimmingProcessor(),
+                    new StringsUppercaseProcessor()
+                };
 
-public List<int> GetCountsOfAnimalsLegs()
-{
-            var animals = new List<Animal>
-            {
-                new Lion(),
-                new Tiger(),
-                new Duck(),
-                new Spider()
-            };
-            
-            var result = new List<int>();
-            foreach(var animal in animals)
-            {
-                result.Add(animal.NumberOfLegs);
-            }
-            return result;
-        }
-}
-    
-public class Animal
-{
-  public virtual int NumberOfLegs { get; } = 0;
+    List<string> result = words;
+    foreach (var stringsProcessor in stringsProcessors)
+    {
+      result = stringsProcessor.Process(result);
+    }
+    return result;
+  }
 }
 
-public class Lion : Animal
+public class StringsProcessor
 {
-  public override int NumberOfLegs { get; } = 4;
+  public virtual List<string> Process(List<string> x)
+  {
+    return x;
+  }
 }
 
-public class Tiger : Animal
+public class StringsTrimmingProcessor : StringsProcessor
 {
-  public override int NumberOfLegs { get; } = 4;
-
+  public override List<string> Process(List<string> words)
+  {
+    List<string> result = new List<string>();
+    foreach (string word in words)
+    {
+      var half = word.Length / 2;
+      result.Add(word.Substring(0, half));
+    }
+    return result;
+  }
 }
 
-public class Duck :Animal
+public class StringsUppercaseProcessor : StringsProcessor
 {
-  public override int NumberOfLegs { get; } = 2;
-
-}
-
-public class Spider : Animal
-{
-  public override int NumberOfLegs { get; } = 8;
+  public override List<string> Process(List<string> words)
+  {
+    List<string> result = new List<string>();
+    foreach (string word in words)
+    {
+      result.Add(word.ToUpper());
+    }
+    return result;
+  }
 }
