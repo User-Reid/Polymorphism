@@ -73,47 +73,55 @@
 //   public override string Name => "Mozerella";
 //   public bool IsLight { get; }
 // }
+var taco = new Exercise();
+System.Console.WriteLine(taco.GetCountsOfAnimalsLegs());
 
-var numbers = new List<int> { 1, 3, 6, -1, 12, 44, -8, -19 };
-bool shallAddPositiveOnly = true;
-
-NumbersSumCalculator calculator = shallAddPositiveOnly ? new PositiveNumbersCalculator() : new NumbersSumCalculator();
-
-int sum = calculator.Calculate(numbers);
-System.Console.WriteLine($"Sum is: {sum}");
 Console.ReadKey();
 
-public class NumbersSumCalculator
+public class Exercise {
+
+public List<int> GetCountsOfAnimalsLegs()
 {
-  public virtual int Calculate(List<int> numbers)
-  {
-    int sum = 0;
-    foreach (var number in numbers)
-    {
-      if (ShallBeAdded(number))
-      {
-        sum += number;
-      }
-    }
-    return sum;
-  }
-  protected virtual bool ShallBeAdded(int number) => true;
+            var animals = new List<Animal>
+            {
+                new Lion(),
+                new Tiger(),
+                new Duck(),
+                new Spider()
+            };
+            
+            var result = new List<int>();
+            foreach(var animal in animals)
+            {
+                result.Add(animal.NumberOfLegs);
+            }
+            return result;
+        }
+}
+    
+public class Animal
+{
+  public virtual int NumberOfLegs { get; } = 0;
 }
 
-public class PositiveNumbersCalculator : NumbersSumCalculator
+public class Lion : Animal
 {
-  protected override bool ShallBeAdded(int number) => number > 0;
+  public override int NumberOfLegs { get; } = 4;
+}
 
-  // public int Calculate(List<int> numbers)
-  // {
-  //   int sum = 0;
-  //   foreach (var number in numbers)
-  //   {
-  //     if (number > 0)
-  //     {
-  //     sum += number;
-  //     }
-  //   }
-  //   return sum;
-  // }
+public class Tiger : Animal
+{
+  public override int NumberOfLegs { get; } = 4;
+
+}
+
+public class Duck :Animal
+{
+  public override int NumberOfLegs { get; } = 2;
+
+}
+
+public class Spider : Animal
+{
+  public override int NumberOfLegs { get; } = 8;
 }
