@@ -1,6 +1,29 @@
 ﻿Ingredient ingredient = new Cheddar(2, 12);
 
+Ingredient randomIngredient = GenerateRandomIngredient();
+Console.WriteLine($"Random ingredient is {randomIngredient}");
+
+System.Console.WriteLine($"is object? {ingredient is object}");
+System.Console.WriteLine($"is ingredient? {ingredient is Ingredient}");
+System.Console.WriteLine($"is cheddar? {ingredient is Cheddar}");
+System.Console.WriteLine($"is mozzarella? {ingredient is Mozarella}");
+System.Console.WriteLine($"is tomato sauce? {ingredient is TomatoSauce}");
+
+if (randomIngredient is Cheddar cheddar)
+{
+  System.Console.WriteLine($"cheddar object: {cheddar}");
+}
+
 Console.ReadKey();
+
+Ingredient GenerateRandomIngredient()
+{
+  var random = new Random();
+  var number = random.Next(1, 4);
+  if (number == 1) { return new Cheddar(2, 12); }
+  if (number == 2) { return new TomatoSauce(1, 3); }
+  else return new Mozarella(2, true);
+}
 
 public class Pizza
 {
@@ -14,7 +37,7 @@ public class Ingredient
 {
   public Ingredient(int priceIFExtraTopping)
   {
-    System.Console.WriteLine("Constgructor from the Ingredient class");
+    System.Console.WriteLine("Constructor from the Ingredient class");
     PriceIFExtraTopping = priceIFExtraTopping;
   }
   public int PriceIFExtraTopping { get; }
@@ -40,7 +63,7 @@ public class Cheddar : Ingredient
     public Cheddar(int priceIFExtraTopping, int agedForMonths) : base(priceIFExtraTopping)
   {
     AgedForMonths = agedForMonths;
-    System.Console.WriteLine("Constgructor from the Cheddar class");
+    System.Console.WriteLine("Constructor from the Cheddar class");
   }
   public override string Name => $"{base.Name}, more specifically, " + $"a Cheddar cheese aged for {AgedForMonths} months.";
   public int AgedForMonths { get; }
