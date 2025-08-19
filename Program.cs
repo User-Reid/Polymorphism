@@ -1,21 +1,6 @@
-﻿// var pizza = new Pizza();
-// pizza.AddIngredient(new Cheddar());
-// pizza.AddIngredient(new TomatoSauce());
-// pizza.AddIngredient(new Mozarella());
-// System.Console.WriteLine(pizza.ToString());
-
-int seasonNumber = 0;
-Season spring = (Season)seasonNumber;
+﻿Ingredient ingredient = new Cheddar(2, 12);
 
 Console.ReadKey();
-
-public enum Season
-{
-  Spring,
-  Summer,
-  Autumn,
-  Winter
-}
 
 public class Pizza
 {
