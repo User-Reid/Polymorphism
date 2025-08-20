@@ -1,7 +1,4 @@
-﻿var pizza = new Pizza();
-Ingredient nullIngredient = null;
-bool taco = nullIngredient is not null;
-System.Console.WriteLine(taco);
+﻿Ingredient ingredient = new Ingredient();
 
 Console.ReadKey();
 
@@ -15,7 +12,7 @@ public class Pizza
   public override string ToString() => $"This is a pizza with {string.Join(", ", _ingredients)}";
 }
 
-public class Ingredient
+public abstract class Ingredient
 {
   public Ingredient(int priceIFExtraTopping)
   {
