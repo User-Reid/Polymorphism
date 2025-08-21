@@ -14,6 +14,8 @@ public class Pizza
 
 public abstract class Ingredient
 {
+  public abstract void Prepare();
+
   public Ingredient(int priceIFExtraTopping)
   {
     System.Console.WriteLine("Constructor from the Ingredient class");
@@ -29,9 +31,9 @@ public abstract class Ingredient
   protected string ProtectedMethod() => "This method is PROTECTED in the Ingredient class";
 }
 
-public class Cheese : Ingredient
+public abstract class Cheese : Ingredient
 {
-  public Cheese(int priceIFExtraTopping) : base(priceIFExtraTopping)
+    public Cheese(int priceIFExtraTopping) : base(priceIFExtraTopping)
   {
     System.Console.WriteLine("This is the Cheese topping");
   }
@@ -39,6 +41,8 @@ public class Cheese : Ingredient
 
 public class Cheddar : Ingredient
 {
+  public override void Prepare() => System.Console.WriteLine("Buy that shit from the store cuz.");
+
     public Cheddar(int priceIFExtraTopping, int agedForMonths) : base(priceIFExtraTopping)
   {
     AgedForMonths = agedForMonths;
@@ -57,6 +61,8 @@ public class Cheddar : Ingredient
 
 public class TomatoSauce : Ingredient
 {
+  public override void Prepare() => System.Console.WriteLine("Chop up that tomato young blood");
+
   public TomatoSauce(int priceIFExtraTopping, int tomatosIn100Grams) : base(priceIFExtraTopping)
   {
     TomatosIn100Grams = tomatosIn100Grams;
@@ -68,10 +74,10 @@ public class TomatoSauce : Ingredient
 
 public class Mozarella : Cheese
 {
-  public Mozarella(int priceIFExtraTopping, bool isLight) : base(priceIFExtraTopping)
+  public override void Prepare() => System.Console.WriteLine("Slice thinly and place on top of the pizza");
+
+  public Mozarella(int priceIFExtraTopping) : base(priceIFExtraTopping)
   {
-    IsLight = isLight;
-    System.Console.WriteLine("This is the Mozerella constructor");
   }
   public override string Name => "Mozerella";
   public bool IsLight { get; }
