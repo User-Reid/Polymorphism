@@ -1,19 +1,29 @@
-﻿var cheddar = new Cheddar(2, 12);
+﻿using Polymorphism.Extensions;
+
+var cheddar = new Cheddar(2, 12);
 var tomatoSauce = new TomatoSauce(1);
 cheddar.Prepare();
 tomatoSauce.Prepare();
 
+var multiline = @"I wanna
+dance with
+somebody!";
+
+System.Console.WriteLine($"The count of lines is {multiline.CountLines()}");
+
 
 Console.ReadKey();
 
+int CountLines(string input) => input.Split('\n').Length;
+
 public class Pizza
 {
-  public Ingredient ingredient;
+    public Ingredient ingredient;
 
-  private List<Ingredient> _ingredients = new List<Ingredient>();
+    private List<Ingredient> _ingredients = new List<Ingredient>();
 
-  public void AddIngredient(Ingredient addedIngredient) => _ingredients.Add(addedIngredient);
-  public override string ToString() => $"This is a pizza with {string.Join(", ", _ingredients)}";
+    public void AddIngredient(Ingredient addedIngredient) => _ingredients.Add(addedIngredient);
+    public override string ToString() => $"This is a pizza with {string.Join(", ", _ingredients)}";
 }
 
 public abstract class Ingredient
