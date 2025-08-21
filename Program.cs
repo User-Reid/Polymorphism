@@ -74,15 +74,6 @@ public class TomatoSauce : Ingredient
     public int TomatosIn100Grams { get; }
 }
 
-public class Donut : TomatoSauce
-{
-    public Donut(int priceIFExtraTopping) : base(priceIFExtraTopping)
-    {
-    }
-
-    public override void Prepare() => cw
-}
-
 // public class PublicMozzarella : Mozarella
 // {
 
