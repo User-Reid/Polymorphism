@@ -1,11 +1,11 @@
-﻿var bakeableDishes = new List<object> {
+﻿var bakeableDishes = new List<IBakeable> {
     new Pizza(),
-    new Panettone(),
+    new Panettone()
 };
 
 foreach (var dish in bakeableDishes)
 {
-    System.Console.WriteLine(bakeableDishes.GetInstructions());
+    System.Console.WriteLine(dish.GetInstructions());
 }
 
 Console.ReadKey();
@@ -15,18 +15,20 @@ public abstract class Dessert
 
 }
 
-public abstract class Bakeable
+public interface IBakeable
 {
-    public abstract string GetInstructions();
+    string GetInstructions();
 }
 
-public class Panettone : Dessert
+public class Panettone : Dessert, IBakeable
 {
-
+  public string GetInstructions() => "Bake at 180 degrees Celsius for 35 minutes";
 }
 
-public class Pizza
+public class Pizza : IBakeable
 {
+    public string GetInstructions() => "Bake at 250 degrees Celsius for 35 minutes, ideally on a stone";
+
     public Ingredient ingredient;
 
     private List<Ingredient> _ingredients = new List<Ingredient>();
